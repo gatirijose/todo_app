@@ -21,14 +21,12 @@ class _HomePageState extends ConsumerState<HomePage> {
           padding: EdgeInsetsGeometry.symmetric(vertical: 10, horizontal: 6),
           sliver: SliverList.list(
             children: [
-              Card.filled(
-                child: Padding(
-                  padding: EdgeInsetsGeometry.all(4),
-                  child: FilledButton.icon(
-                    onPressed: () => showAddTodo(),
-                    label: Text("Add Todo"),
-                    icon: Icon(Icons.add),
-                  ),
+              Padding(
+                padding: EdgeInsetsGeometry.all(4),
+                child: FilledButton.icon(
+                  onPressed: () => showAddTodo(),
+                  label: Text("Add Todo"),
+                  icon: Icon(Icons.add),
                 ),
               ),
               SizedBox(height: 6),

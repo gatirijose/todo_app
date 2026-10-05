@@ -52,9 +52,9 @@ class AppStorage {
   static List<Todo> getTodos() {
     List<Todo> todos = [];
     final dynamicTodos = box.get('todos', defaultValue: []) as List;
-    if (todos.isNotEmpty) {
+    if (dynamicTodos.isNotEmpty) {
       for (var todo in dynamicTodos) {
-        todos.add(Todo.fromJson(todo));
+        todos.add(Todo.fromJson(Map<String, dynamic>.from(todo)));
       }
     }
     return todos;
@@ -63,5 +63,6 @@ class AppStorage {
   /// Adds todo to the database.
   ///
   // saves a todo.
-  static void saveTodos(List<Todo> todos) => box.put("todos", todos);
+  static void saveTodos(List<Todo> todos) =>
+      box.put("todos", todos.map((t) => t.toJson()).toList());
 }

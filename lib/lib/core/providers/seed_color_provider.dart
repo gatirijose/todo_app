@@ -7,6 +7,7 @@ class SeedColorProvider extends Notifier<Color> {
   Color build() => Color(AppStorage.getSeedColor());
   void setSeedColor(Color color) {
     AppStorage.setSeedColor(color.toARGB32());
+    state = color;
   }
 }
 

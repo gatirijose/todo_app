@@ -9,6 +9,8 @@ const fontMap = {
   'Plus Jakarta': 'Plus Jakarta Sans',
   'Poppins': 'Poppins',
   'DM Sans': 'DM Sans',
+  'Playpen Sans': 'Playpen Sans',
+  'Felipa': 'Felipa',
 };
 
 class FontSettingsProvider extends Notifier<String> {
@@ -17,6 +19,8 @@ class FontSettingsProvider extends Notifier<String> {
 
   void setFont(String fontName) {
     AppStorage.setAppFont(fontName);
+    state = fontName;
+    // debugPrint(fontName);
   }
 
   TextTheme textTheme(TextTheme baseTheme) {
@@ -29,6 +33,10 @@ class FontSettingsProvider extends Notifier<String> {
         return GoogleFonts.poppinsTextTheme(baseTheme);
       case 'DM Sans':
         return GoogleFonts.dmSansTextTheme(baseTheme);
+      case 'Playpen Sans':
+        return GoogleFonts.playpenSansTextTheme(baseTheme);
+      case 'Felipa':
+        return GoogleFonts.felipaTextTheme(baseTheme);
       default:
         return GoogleFonts.outfitTextTheme(baseTheme);
     }

@@ -1,6 +1,8 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:todo_app/lib/views/settings_page/widgets/accent_color_settings_card.dart';
 import 'package:todo_app/lib/views/settings_page/widgets/theme_settings_card.dart';
-import 'package:todo_app/lib/views/settings_page/widgets/theme_switch_card.dart';
+import 'package:todo_app/lib/views/settings_page/widgets/dynamic_theme_switch_card.dart';
+import 'package:todo_app/lib/views/settings_page/widgets/typography_settings_card.dart';
 
 class SettingsPage extends StatefulWidget {
   const new({super.key});
@@ -13,9 +15,12 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      physics: NeverScrollableScrollPhysics(),
       slivers: [
-        const SliverAppBar(title: Text("Settings")),
+        const SliverAppBar(
+          title: Text("Settings"),
+          stretch: true,
+          pinned: true,
+        ),
         SliverPadding(
           padding: EdgeInsetsGeometry.all(16),
           sliver: SliverList.list(
@@ -33,7 +38,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(height: 8),
-              ThemeSwitchCard(),
+              DynamicThemeSwitchCard(),
+              SizedBox(height: 8),
+              AccentColorSettingsCard(),
 
               Padding(
                 padding: EdgeInsetsGeometry.only(top: 16, bottom: 16),
@@ -42,6 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
+              TypographySettingsCard(),
             ],
           ),
         ),

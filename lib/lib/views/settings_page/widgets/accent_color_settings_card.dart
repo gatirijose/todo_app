@@ -16,31 +16,43 @@ class _AccentColorSettingsCardState
   Widget build(BuildContext context) {
     final seedColor = ref.watch(seedColorProvider);
     return Card(
-      child: Wrap(
-        spacing: 8,
-        children: [
-          for (final materialColor in [
-            Colors.blue,
-            Colors.orange,
-            Colors.deepOrange,
-            Colors.green,
-            Colors.teal,
-            Colors.purple,
-            Colors.deepPurple,
-          ])
-            GestureDetector(
-              onTap: () => ref
-                  .read(seedColorProvider.notifier)
-                  .setSeedColor(materialColor),
-              child: CircleAvatar(
-                backgroundColor: materialColor,
-                radius: 22,
-                child: seedColor.toARGB32() == materialColor.toARGB32()
-                    ? const Icon(Icons.check, color: Colors.white)
-                    : null,
-              ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsetsGeometry.only(bottom: 8),
+              child: Text("Only works if dynamic color is disabled"),
             ),
-        ],
+            Wrap(
+              spacing: 12,
+              children: [
+                for (final materialColor in [
+                  Colors.blue,
+                  Colors.orange,
+                  Colors.deepOrange,
+                  Colors.green,
+                  Colors.teal,
+                  Colors.purple,
+                  Colors.deepPurple,
+                ])
+                  GestureDetector(
+                    onTap: () => ref
+                        .read(seedColorProvider.notifier)
+                        .setSeedColor(materialColor),
+                    child: CircleAvatar(
+                      backgroundColor: materialColor,
+                      radius: 22,
+                      child: seedColor.toARGB32() == materialColor.toARGB32()
+                          ? const Icon(Icons.check, color: Colors.white)
+                          : null,
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

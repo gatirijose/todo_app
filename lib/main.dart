@@ -22,6 +22,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeModeProvider);
     final seedColor = ref.watch(seedColorProvider);
+    final _ = ref.watch(fontSettingsProvider);
     final appFont = ref.read(fontSettingsProvider.notifier);
     final canUseDynamicFont = ref.watch(useDynamicProvider);
     return DynamicColorBuilder(

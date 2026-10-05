@@ -78,8 +78,7 @@ class _EditTodoSheetState extends ConsumerState<EditTodoSheet> {
               icon: Icon(Icons.save_outlined),
               onPressed: () {
                 if (widget.todo == null) {
-                  if ((validationText!.isEmpty || validationText == null) &&
-                      taskEditingController.text.isNotEmpty) {
+                  if (taskEditingController.text.isNotEmpty) {
                     ref
                         .read(todosProvider.notifier)
                         .addTodos(taskEditingController.text);
@@ -89,9 +88,10 @@ class _EditTodoSheetState extends ConsumerState<EditTodoSheet> {
                       .read(todosProvider.notifier)
                       .updateTodoText(
                         todoId: widget.todo!.id,
-                        newText: widget.todo!.title,
+                        newText: taskEditingController.text,
                       );
                 }
+                Navigator.pop(context);
               },
               label: Text(widget.todo == null ? "Save Task" : "Update Task"),
             ),

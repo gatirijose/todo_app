@@ -8,6 +8,7 @@ class ThemeProvider extends Notifier<ThemeMode> {
 
   void setTheme(ThemeMode mode) {
     AppStorage.setThemeMode(mode);
+    state = mode;
   }
 }
 
