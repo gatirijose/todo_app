@@ -14,7 +14,18 @@ class EditTodoSheet extends ConsumerStatefulWidget {
 class _EditTodoSheetState extends ConsumerState<EditTodoSheet> {
   GlobalKey key = GlobalKey();
   late final String? validationText;
-  TextEditingController taskEditingController = TextEditingController();
+  late TextEditingController taskEditingController;
+
+  @override
+  void initState() {
+    setState(() {
+      taskEditingController = TextEditingController();
+      if (widget.todo != null) {
+        taskEditingController.text = widget.todo!.title;
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

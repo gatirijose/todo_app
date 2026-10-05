@@ -60,7 +60,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                 (todo) => Card(
                   child: CheckboxListTile(
                     value: todo.done,
-
                     title: GestureDetector(
                       onTap: () => showModalBottomSheet(
                         showDragHandle: true,

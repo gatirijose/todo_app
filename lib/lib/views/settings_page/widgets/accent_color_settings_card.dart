@@ -27,9 +27,13 @@ class _AccentColorSettingsCardState
             ),
             Wrap(
               spacing: 12,
+
               children: [
                 for (final materialColor in [
+                  Colors.brown,
+                  Colors.grey,
                   Colors.blue,
+                  Colors.blueGrey,
                   Colors.orange,
                   Colors.deepOrange,
                   Colors.green,
@@ -41,12 +45,15 @@ class _AccentColorSettingsCardState
                     onTap: () => ref
                         .read(seedColorProvider.notifier)
                         .setSeedColor(materialColor),
-                    child: CircleAvatar(
-                      backgroundColor: materialColor,
-                      radius: 22,
-                      child: seedColor.toARGB32() == materialColor.toARGB32()
-                          ? const Icon(Icons.check, color: Colors.white)
-                          : null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircleAvatar(
+                        backgroundColor: materialColor,
+                        radius: 22,
+                        child: seedColor.toARGB32() == materialColor.toARGB32()
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
+                      ),
                     ),
                   ),
               ],
