@@ -10,25 +10,34 @@ class ThemeSettingsCard extends ConsumerStatefulWidget {
 }
 
 class _ThemeSettingsCardState extends ConsumerState<ThemeSettingsCard> {
+  late ThemeMode themeMode;
+  @override
+  void initState() {
+    themeMode = ref.watch(themeModeProvider);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final themeMode = ref.watch(themeModeProvider);
     return Card(
       child: RadioGroup<ThemeMode>(
         groupValue: themeMode,
         onChanged: (value) {
-          ref.read(themeModeProvider.notifier).setTheme(value!);
+          ref.watch(themeModeProvider.notifier).setTheme(value!);
+          setState(() {
+            themeMode = value;
+          });
         },
 
         child: Column(
           children: [
             RadioListTile<ThemeMode>(
-              value: ThemeMode.light,
-              title: Text("Light"),
-            ),
-            RadioListTile<ThemeMode>(
               value: ThemeMode.dark,
               title: Text("Dark"),
+            ),
+            RadioListTile<ThemeMode>(
+              value: ThemeMode.light,
+              title: Text("Light"),
             ),
             RadioListTile<ThemeMode>(
               value: ThemeMode.system,

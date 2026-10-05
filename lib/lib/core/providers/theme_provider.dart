@@ -5,6 +5,7 @@ import 'package:todo_app/lib/core/app_storage.dart';
 class ThemeProvider extends Notifier<ThemeMode> {
   @override
   ThemeMode build() => AppStorage.getThemeMode();
+
   void setTheme(ThemeMode mode) {
     AppStorage.setThemeMode(mode);
   }

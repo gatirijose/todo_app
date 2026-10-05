@@ -9,7 +9,18 @@ class TodosProvider extends Notifier<List<Todo>> {
     [...state, Todo(id: DateTime.now().toString(), title: title, done: false)];
   }
 
-  void markTodoComplete(String todoId) {
+  void updateTodoText({required String todoId, required String newText}) {
+    final List<Todo> updatedTodos = state.map((todo) {
+      if (todo.id == todoId) {
+        todo.title = newText;
+      }
+      return todo;
+    }).toList();
+    state = updatedTodos;
+    AppStorage.saveTodos(updatedTodos);
+  }
+
+  void markTodoComplete({required String todoId}) {
     final List<Todo> updatedTodos = state.map((todo) {
       if (todo.id == todoId) {
         todo.done = true;

@@ -1,23 +1,35 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:todo_app/lib/views/home_page/home_page.dart';
 import 'package:todo_app/lib/views/settings_page/settings_page.dart';
 
-class HomePage extends ConsumerStatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const new({super.key});
 
   @override
-  ConsumerState<HomePage> createState() => _HomePageState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  late int currentIndex;
+
+  @override
+  void initState() {
+    setState(() {
+      currentIndex = 0;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    int currentIndex = 0;
     return Scaffold(
       bottomNavigationBar: NavigationBar(
+        selectedIndex: currentIndex,
         onDestinationSelected: (value) {
           setState(() {
             currentIndex = value;
+            debugPrint("Current page $value");
           });
         },
         destinations: [
